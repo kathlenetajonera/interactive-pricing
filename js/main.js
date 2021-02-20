@@ -31,8 +31,8 @@ const annualPriceClass = "card__toggle-btn--annual";
 const slider = document.querySelector(".card__slider-track");
 const sliderBtn = document.querySelector(".card__slider-thumb");
 const sliderProgress = document.querySelector(".card__slider-progress");
-// const sliderWidth = slider.getBoundingClientRect().width;
-// const sliderOffsetLeft = slider.getBoundingClientRect().left;
+const sliderWidth = slider.getBoundingClientRect().width;
+const sliderOffsetLeft = slider.getBoundingClientRect().left;
 
 const gestureStart = () => dragging = true;
 const gestureMove = e => {
@@ -44,13 +44,13 @@ const gestureMove = e => {
 
         e.type === "mousemove" ? clientX = e.clientX : clientX = e.touches[0].clientX;
 
-        if (clientX < slider.getBoundingClientRect().left) {
+        if (clientX < sliderOffsetLeft) {
             position = 0;
-        } else if (clientX > slider.offsetWidth + slider.getBoundingClientRect().left) {
+        } else if (clientX > sliderWidth + sliderOffsetLeft) {
             position = 100;
         } else {
-            currentPosition = clientX - slider.getBoundingClientRect().left;
-            position = (currentPosition / slider.offsetWidth) * 100;
+            currentPosition = clientX - sliderOffsetLeft;
+            position = (currentPosition / sliderWidth) * 100;
         }
 
         sliderPosition();
@@ -67,7 +67,9 @@ let dragging;
 let currentPosition;
 let windowWidth = window.innerWidth;
 
-sliderPosition();
+//sliderPosition();
+
+initialPosition();
 
 //desktop - mouse events
 sliderBtn.addEventListener("mousedown", gestureStart);
@@ -100,7 +102,8 @@ function sliderPosition() {
     position === undefined ? position = 50 : position;
 
     sliderProgress.style.transform = "scaleX(" + position/100 + ")";
-    sliderBtn.style.transform = "translate(" + (position/100 * slider.offsetWidth - 20) + "px, -50%)"; // minus 20 to fix margin
+    sliderBtn.style.left = "";
+    sliderBtn.style.transform = "translate(" + (position/100 * sliderWidth - 20) + "px, -50%)"; // minus 20 to fix margin
 
     updateContent(position);
 }
@@ -128,4 +131,12 @@ function updateContent(pos) {
 
 function computeDiscount(origPrice) {
     return (origPrice - (origPrice * .25)).toFixed(2);
+}
+
+function initialPosition() {
+    updateContent(50)
+
+    sliderBtn.style.left = "50%";
+    sliderBtn.style.transform = 'translate(-50%, -50%)';
+    sliderProgress.style.transform = "scaleX(0.5)";
 }
