@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Pricing Component</title>
+
+    <link rel="shortcut icon" href="images/favicon-32x32.png">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+
+    <div class="landing">
+        <header class="header">
+            <h1 class="header__title">
+                Simple, traffic-based pricing
+            </h1>
+
+            <p class="header__subtext">
+                Sign-up for our 30-day trial. No credit card required.
+            </p>
+        </header>
+
+        <div class="card">
+            <div class="card__content card__content--main">
+                <p class="card__pageviews"></p>
+
+                <div class="card__slider-container">
+                    <div class="card__slider-track">
+                        <div class="card__slider-progress"></div>
+                    </div>
+                    <div class="card__slider-thumb"></div>
+                </div>
+
+                <h1 class="card__price"></h1>
+
+                <div class="card__toggle">
+                    <p class="card__toggle-text">Monthly Billing</p>
+
+                    <div class="card__toggle-btn">
+                        <span class="card__toggle-indicator"></span>
+                    </div>
+
+                    <p class="card__toggle-text">Yearly Billing <span class="card__discount card__discount--mobile">-25%</span>
+                    <span class="card__discount card__discount--desktop">25% discount</span></p>
+                </div>
+            </div>
+
+            <hr class="card__divider">
+
+            <div class="card__content card__content--sub">
+                <div class="card__features">
+                    <p class="card__feature">
+                        Unlimited websites
+                    </p>
+                    <p class="card__feature">
+                        100% data ownership
+                    </p>
+                    <p class="card__feature">
+                        Email reports
+                    </p>
+                </div>
+
+                <button class="card__button">Start my trial</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+        Coded by <a href="#">Kathlene Tajonera</a>.
+    </div>
+    
+</body>
+</html>
