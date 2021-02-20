@@ -31,12 +31,15 @@ const annualPriceClass = "card__toggle-btn--annual";
 const slider = document.querySelector(".card__slider-track");
 const sliderBtn = document.querySelector(".card__slider-thumb");
 const sliderProgress = document.querySelector(".card__slider-progress");
-const sliderWidth = slider.getBoundingClientRect().width;
-const sliderOffsetLeft = slider.getBoundingClientRect().left;
+// const sliderWidth = slider.getBoundingClientRect().width;
+// const sliderOffsetLeft = slider.getBoundingClientRect().left;
 
 const gestureStart = () => dragging = true;
 const gestureMove = e => {
     if (dragging === true) {
+        const sliderWidth = slider.getBoundingClientRect().width;
+        const sliderOffsetLeft = slider.getBoundingClientRect().left;
+
         let clientX;
 
         document.body.style.overflow = "hidden";
@@ -66,8 +69,6 @@ let position; //slider position - percentage
 let dragging;
 let currentPosition;
 let windowWidth = window.innerWidth;
-
-//sliderPosition();
 
 initialPosition();
 
@@ -99,13 +100,15 @@ priceToggle.addEventListener("click", () => {
 })
 
 function sliderPosition() {
-    let positionValue = position/100;
+    const sliderWidth = slider.getBoundingClientRect().width;
 
     sliderBtn.style.left = "0";
-    sliderProgress.style.transform = "scaleX(" + positionValue + ")";
-    sliderBtn.style.transform = "translate(" + (positionValue * sliderWidth - 20) + "px, -50%)"; // minus 20 to fix margin
+    sliderProgress.style.transform = "scaleX(" + position/100 + ")";
+    sliderBtn.style.transform = "translate(" + (position/100 * sliderWidth - 20) + "px, -50%)"; // minus 20 to fix margin
 
     updateContent(position);
+
+    console.log(sliderWidth);
 }
 
 function updateContent(pos) {
