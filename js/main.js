@@ -31,11 +31,13 @@ const annualPriceClass = "card__toggle-btn--annual";
 const slider = document.querySelector(".card__slider-track");
 const sliderBtn = document.querySelector(".card__slider-thumb");
 const sliderProgress = document.querySelector(".card__slider-progress");
-const sliderWidth = slider.getBoundingClientRect().width;
-const sliderOffsetLeft = slider.getBoundingClientRect().left;
+let sliderWidth;
+let sliderOffsetLeft;
 
 const gestureStart = () => dragging = true;
 const gestureMove = e => {
+    updateBoundingClientRect();
+    
     if (dragging === true) {
         let clientX;
 
@@ -69,8 +71,6 @@ let windowWidth = window.innerWidth;
 
 sliderPosition();
 
-console.log(sliderWidth);
-
 //desktop - mouse events
 sliderBtn.addEventListener("mousedown", gestureStart);
 document.addEventListener("mousemove", e => gestureMove(e));
@@ -99,14 +99,14 @@ priceToggle.addEventListener("click", () => {
 })
 
 function sliderPosition() {
+    updateBoundingClientRect();
+
     position === undefined ? position = 50 : position;
 
     sliderProgress.style.transform = "scaleX(" + position/100 + ")";
     sliderBtn.style.transform = "translate(" + (position/100 * sliderWidth - 20) + "px, -50%)"; // minus 20 to fix margin
 
     updateContent(position);
-
-    console.log(sliderWidth);
 }
 
 function updateContent(pos) {
@@ -132,4 +132,9 @@ function updateContent(pos) {
 
 function computeDiscount(origPrice) {
     return (origPrice - (origPrice * .25)).toFixed(2);
+}
+
+function updateBoundingClientRect() {
+    sliderWidth = slider.getBoundingClientRect().width;
+    sliderOffsetLeft = slider.getBoundingClientRect().left;
 }
