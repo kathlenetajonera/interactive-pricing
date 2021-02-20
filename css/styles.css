@@ -304,9 +304,7 @@ body {
   }
   .card__discount--desktop {
     display: inline-block;
-    width: -webkit-max-content;
-    width: -moz-max-content;
-    width: max-content;
+    width: 5.55rem;
   }
 }
 

@@ -82,7 +82,7 @@ sliderBtn.addEventListener("touchend", gestureEnd);
 window.addEventListener("resize", () => {
     if (window.innerWidth != windowWidth) {
         windowWidth = window.innerWidth;
-        location.reload();
+        document.location.reload();
     }
 });
 
@@ -103,6 +103,8 @@ function sliderPosition() {
     sliderBtn.style.transform = "translate(" + (position/100 * sliderWidth - 20) + "px, -50%)"; // minus 20 to fix margin
 
     updateContent(position);
+
+    console.log(position);
 }
 
 function updateContent(pos) {
