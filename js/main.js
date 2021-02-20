@@ -31,12 +31,12 @@ const annualPriceClass = "card__toggle-btn--annual";
 const slider = document.querySelector(".card__slider-track");
 const sliderBtn = document.querySelector(".card__slider-thumb");
 const sliderProgress = document.querySelector(".card__slider-progress");
+const sliderWidth = slider.getBoundingClientRect().width;
+const sliderOffsetLeft = slider.getBoundingClientRect().left;
 
 const gestureStart = () => dragging = true;
 const gestureMove = e => {
     if (dragging === true) {
-        const sliderWidth = slider.getBoundingClientRect().width;
-        const sliderOffsetLeft = slider.getBoundingClientRect().left;
         let clientX;
 
         document.body.style.overflow = "hidden";
@@ -69,6 +69,8 @@ let windowWidth = window.innerWidth;
 
 sliderPosition();
 
+console.log(sliderWidth);
+
 //desktop - mouse events
 sliderBtn.addEventListener("mousedown", gestureStart);
 document.addEventListener("mousemove", e => gestureMove(e));
@@ -97,14 +99,14 @@ priceToggle.addEventListener("click", () => {
 })
 
 function sliderPosition() {
-    const sliderWidth = slider.getBoundingClientRect().width;
-
     position === undefined ? position = 50 : position;
 
     sliderProgress.style.transform = "scaleX(" + position/100 + ")";
     sliderBtn.style.transform = "translate(" + (position/100 * sliderWidth - 20) + "px, -50%)"; // minus 20 to fix margin
 
     updateContent(position);
+
+    console.log(sliderWidth);
 }
 
 function updateContent(pos) {
