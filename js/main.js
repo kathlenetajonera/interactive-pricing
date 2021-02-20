@@ -31,7 +31,7 @@ const annualPriceClass = "card__toggle-btn--annual";
 const slider = document.querySelector(".card__slider-track");
 const sliderBtn = document.querySelector(".card__slider-thumb");
 const sliderProgress = document.querySelector(".card__slider-progress");
-const sliderWidth = slider.offsetWidth;
+const sliderWidth = slider.getBoundingClientRect().width;
 const sliderOffsetLeft = slider.getBoundingClientRect().left;
 
 const gestureStart = () => dragging = true;
@@ -103,8 +103,6 @@ function sliderPosition() {
     sliderBtn.style.transform = "translate(" + (position/100 * sliderWidth - 20) + "px, -50%)"; // minus 20 to fix margin
 
     updateContent(position);
-
-    console.log(position);
 }
 
 function updateContent(pos) {
