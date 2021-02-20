@@ -99,11 +99,11 @@ priceToggle.addEventListener("click", () => {
 })
 
 function sliderPosition() {
-    position === undefined ? position = 50 : position;
+    let positionValue = position/100;
 
-    sliderProgress.style.transform = "scaleX(" + position/100 + ")";
-    sliderBtn.style.left = "";
-    sliderBtn.style.transform = "translate(" + (position/100 * sliderWidth - 20) + "px, -50%)"; // minus 20 to fix margin
+    sliderBtn.style.left = "0";
+    sliderProgress.style.transform = "scaleX(" + positionValue + ")";
+    sliderBtn.style.transform = "translate(" + (positionValue * sliderWidth - 20) + "px, -50%)"; // minus 20 to fix margin
 
     updateContent(position);
 }
