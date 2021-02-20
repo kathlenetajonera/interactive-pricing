@@ -1,6 +1,5 @@
 @import "./variables";
 
-//globals
 html {
     box-sizing: border-box;
 }
@@ -15,10 +14,7 @@ body {
 }
 
 .landing {
-    background-image: url("/images/bg-pattern.svg");
-    background-repeat: no-repeat;
-    background-position: top left;
-    background-color: $mobileLandingBg;
+    background: $mobileLandingBg url("/images/bg-pattern.svg") top left no-repeat;
     padding: 2rem 1.5rem;
     min-height: 100vh;
 }
@@ -26,9 +22,7 @@ body {
 .header {
     text-align: center;
     font-family: $font-family;
-    background-image: url("/images/pattern-circles.svg");
-    background-repeat: no-repeat;
-    background-position: center;
+    background: url("/images/pattern-circles.svg") center no-repeat;
     height: 10rem;
     display: flex;
     flex-direction: column;
@@ -65,11 +59,17 @@ body {
     margin: 2rem auto;
     width: Min(32.5rem, 100%);
     $self: &;
+    cursor: default;
 
     &__content {
         display: grid;
         align-items: center;
         text-align: center;
+
+        @include media-query(tablet) {
+            grid-template-columns: repeat(2, 1fr);
+            text-align: left;
+        }
 
         &--main {
             padding: 1.8rem 1rem 1rem;
@@ -86,21 +86,14 @@ body {
                 padding: 1rem 2.5rem 1rem;
             }
         }
-
-        @include media-query(tablet) {
-            grid-template-columns: repeat(2, 1fr);
-            text-align: left;
-        }
     }
 
     &__pageviews {
         color: $textColor;
         text-transform: uppercase;
         font-size: .8rem;
-        font-weight: 600;
         letter-spacing: .07rem;
         margin: 0;
-        cursor: default;
     }
 
     &__price {
@@ -111,7 +104,6 @@ body {
         justify-content: center;
         align-items: center;
         margin: 0;
-        cursor: default;
 
         @include media-query(tablet) {
             grid-column: 2 / 3;
@@ -128,7 +120,6 @@ body {
     }
 
     &__slider-container {
-        width: 100%;
         position: relative;
         margin: 2.5rem 0;
 
@@ -156,8 +147,8 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 40px;
-        height: 40px;
+        width: 2.5rem;
+        height: 2.5rem;
         border-radius: 50%;
         background-color: $sliderIndicator;
         position: absolute;
@@ -192,28 +183,28 @@ body {
     }
 
     &__toggle-btn {
-        width: 44px;
-        height: 22px;
-        background: $toggleBg;
+        width: 2.75rem;
+        height: 1.375rem;
+        background-color: $toggleBg;
         border-radius: 2rem;
         margin: 0 .8rem;
         position: relative;
         cursor: pointer;
 
         &:hover, &--annual {
-            background: $sliderIndicator;
+            background-color: $sliderIndicator;
         }
 
         &--annual {
             #{ $self }__toggle-indicator {
-                left: 1.6rem;
+                left: 1.55rem;
             }
         }
     }
 
     &__toggle-indicator {
-        width: 35%;
-        height: 75%;
+        width: 1rem;
+        height: 1rem;
         background-color: $cardBg;
         display: block;
         border-radius: 50%;
@@ -297,7 +288,7 @@ body {
 
 .attribution {
     font-family: $font-family;
-    font-size: 11px;
+    font-size: 0.6875rem;
     text-align: center;
     padding: 1rem 0;
 

@@ -16,10 +16,7 @@ body {
 }
 
 .landing {
-  background-image: url("/images/bg-pattern.svg");
-  background-repeat: no-repeat;
-  background-position: top left;
-  background-color: #fbfcfe;
+  background: #fbfcfe url("/images/bg-pattern.svg") top left no-repeat;
   padding: 2rem 1.5rem;
   min-height: 100vh;
 }
@@ -27,9 +24,7 @@ body {
 .header {
   text-align: center;
   font-family: "Manrope", sans-serif;
-  background-image: url("/images/pattern-circles.svg");
-  background-repeat: no-repeat;
-  background-position: center;
+  background: url("/images/pattern-circles.svg") center no-repeat;
   height: 10rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -79,6 +74,7 @@ body {
           box-shadow: 0 .25rem .8rem 0 #f1f2f7;
   margin: 2rem auto;
   width: Min(32.5rem, 100%);
+  cursor: default;
 }
 
 .card__content {
@@ -88,6 +84,14 @@ body {
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
+}
+
+@media (min-width: 48rem) {
+  .card__content {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+    text-align: left;
+  }
 }
 
 .card__content--main {
@@ -110,22 +114,12 @@ body {
   }
 }
 
-@media (min-width: 48rem) {
-  .card__content {
-    -ms-grid-columns: (1fr)[2];
-        grid-template-columns: repeat(2, 1fr);
-    text-align: left;
-  }
-}
-
 .card__pageviews {
   color: #858fad;
   text-transform: uppercase;
   font-size: .8rem;
-  font-weight: 600;
   letter-spacing: .07rem;
   margin: 0;
-  cursor: default;
 }
 
 .card__price {
@@ -142,7 +136,6 @@ body {
       -ms-flex-align: center;
           align-items: center;
   margin: 0;
-  cursor: default;
 }
 
 @media (min-width: 48rem) {
@@ -166,7 +159,6 @@ body {
 }
 
 .card__slider-container {
-  width: 100%;
   position: relative;
   margin: 2.5rem 0;
 }
@@ -203,8 +195,8 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   background-color: #10d5c2;
   position: absolute;
@@ -250,9 +242,9 @@ body {
 }
 
 .card__toggle-btn {
-  width: 44px;
-  height: 22px;
-  background: #cdd7ee;
+  width: 2.75rem;
+  height: 1.375rem;
+  background-color: #cdd7ee;
   border-radius: 2rem;
   margin: 0 .8rem;
   position: relative;
@@ -260,16 +252,16 @@ body {
 }
 
 .card__toggle-btn:hover, .card__toggle-btn--annual {
-  background: #10d5c2;
+  background-color: #10d5c2;
 }
 
 .card__toggle-btn--annual .card__toggle-indicator {
-  left: 1.6rem;
+  left: 1.55rem;
 }
 
 .card__toggle-indicator {
-  width: 35%;
-  height: 75%;
+  width: 1rem;
+  height: 1rem;
   background-color: white;
   display: block;
   border-radius: 50%;
@@ -360,7 +352,7 @@ body {
 
 .attribution {
   font-family: "Manrope", sans-serif;
-  font-size: 11px;
+  font-size: 0.6875rem;
   text-align: center;
   padding: 1rem 0;
 }

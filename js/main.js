@@ -37,10 +37,11 @@ const sliderOffsetLeft = slider.getBoundingClientRect().left;
 const gestureStart = () => dragging = true;
 const gestureMove = e => {
     if (dragging === true) {
+        let clientX;
+
         document.body.style.overflow = "hidden";
         sliderBtn.classList.add("card__slider-thumb--dragging");
 
-        let clientX;
         e.type === "mousemove" ? clientX = e.clientX : clientX = e.touches[0].clientX;
 
         if (clientX < sliderOffsetLeft) {
@@ -64,6 +65,7 @@ const gestureEnd = () => {
 let position; //slider position - percentage
 let dragging;
 let currentPosition;
+let windowWidth = window.innerWidth;
 
 sliderPosition();
 
@@ -77,7 +79,13 @@ sliderBtn.addEventListener("touchstart", gestureStart);
 sliderBtn.addEventListener("touchmove", e => gestureMove(e))
 sliderBtn.addEventListener("touchend", gestureEnd);
 
-window.addEventListener("resize", () => location.reload());
+window.addEventListener("resize", () => {
+    if (window.innerWidth != windowWidth) {
+        windowWidth = window.innerWidth;
+        location.reload();
+    }
+});
+
 priceToggle.addEventListener("click", () => {
     if (!priceToggle.classList.contains(annualPriceClass)) {
         priceToggle.classList.add(annualPriceClass);
@@ -91,7 +99,7 @@ priceToggle.addEventListener("click", () => {
 function sliderPosition() {
     position === undefined ? position = 50 : position;
 
-    sliderProgress.style.transform = "scaleX(" + position/100 + ")"; //translates the value to 0.6
+    sliderProgress.style.transform = "scaleX(" + position/100 + ")";
     sliderBtn.style.transform = "translate(" + (position/100 * sliderWidth - 20) + "px, -50%)"; // minus 20 to fix margin
 
     updateContent(position);
@@ -108,10 +116,11 @@ function updateContent(pos) {
         const isAnnual = priceToggle.classList.contains(annualPriceClass);
 
         pageViews.textContent = priceRange[index].pageviews + " Pageviews";
+        
         price.innerHTML = `
         $${ isAnnual ? priceRange[index].annualPrice : priceRange[index].monthlyPrice }
         <span class="card__price-type">
-        ${ isAnnual ? '/ annually' : '/ monthly' }
+        ${ isAnnual ? '/ annual' : '/ month' }
         </span>
         `
     }
