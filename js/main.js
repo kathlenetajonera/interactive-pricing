@@ -92,9 +92,13 @@ window.addEventListener("resize", () => {
 priceToggle.addEventListener("click", () => {
     if (!priceToggle.classList.contains(annualPriceClass)) {
         priceToggle.classList.add(annualPriceClass);
+
+        position === undefined ? position = 50 : position;
         updateContent(position);
     } else {
         priceToggle.classList.remove(annualPriceClass);
+
+        position === undefined ? position = 50 : position;
         updateContent(position);
     }
 })
@@ -107,8 +111,6 @@ function sliderPosition() {
     sliderBtn.style.transform = "translate(" + (position/100 * sliderWidth - 20) + "px, -50%)"; // minus 20 to fix margin
 
     updateContent(position);
-
-    console.log(sliderWidth);
 }
 
 function updateContent(pos) {
